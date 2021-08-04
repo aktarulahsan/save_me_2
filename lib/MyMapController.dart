@@ -14,9 +14,9 @@ class MyMapController extends GetxController {
     super.onInit();
   }
 
-  gotoMap(var l, var ln) {
-    pointLat.value = l;
-    pointLong.value = ln;
+  gotoMap() {
+    // pointLat.value = l;
+    // pointLong.value = ln;
 
     Get.to(MyMap());
   }

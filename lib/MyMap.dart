@@ -22,9 +22,13 @@ class _MyMapState extends State<MyMap> {
   MyMapController mapcontroll = Get.find();
   String searchAddr;
 
+  // double l= double.tryParse(${widget.lat});
   LatLng _center = const LatLng(45.521563, -122.677433);
   LatLng get initialPos => _center;
   bool buscando = false;
+  double l;
+  double d;
+
 
   void onCameraMove(CameraPosition position) async {
     setState(() {});
@@ -54,7 +58,10 @@ class _MyMapState extends State<MyMap> {
     void _onMapCreated(GoogleMapController controller) {
       mapController = controller;
     }
-
+    // l = double.tryParse(widget.lat);
+    // d = double.tryParse(widget.lng);
+    // _center = const LatLng(45.521563, -122.677433);
+    // String s= widget.lat;
     return Scaffold(
       body: Stack(
         children: [
@@ -98,7 +105,7 @@ class _MyMapState extends State<MyMap> {
   Widget showbottom() {
     return Container(
       // width: 200,
-      height: 150,
+      height: 100,
 
       padding: EdgeInsets.only(left: 20, right: 20),
       decoration: BoxDecoration(
@@ -108,7 +115,7 @@ class _MyMapState extends State<MyMap> {
       child: Stack(
         children: [
           Positioned(
-            bottom: 80.0,
+            bottom: 30.0,
             right: 0.0,
             left: 0.0,
             child: Container(
@@ -158,69 +165,69 @@ class _MyMapState extends State<MyMap> {
                   ],
                 )),
           ),
-          Positioned(
-              bottom: 10.0,
-              right: 10.0,
-              left: 10.0,
-              child: Container(
-                height: 50.0,
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 50,
-                          // margin: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                colors: [
-                                  Color(Helper.getHexToInt("#11C7A1")),
-                                  // Colors.green[600],
-                                  Color(Helper.getHexToInt("#11E4A1"))
-                                ]),
-                            // color: Colors.white,
-                            borderRadius: BorderRadius.circular(9),
-                          ),
-                          child: Center(
-                              child: Text(
-                            "Set Location",
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontFamily: 'TTCommonsm',
-                            ),
-                          )),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        // padding: EdgeInsets.only(top: 5, left: 5),
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                colors: [
-                                  Color(Helper.getHexToInt("#11C7A1")),
-                                  // Colors.green[600],
-                                  Color(Helper.getHexToInt("#11E4A1"))
-                                ]),
-                            borderRadius: BorderRadius.circular(9)),
-                        child: Center(child: Icon(Icons.star)),
-                      ),
-                    ),
-                  ],
-                ),
-              )),
+          // Positioned(
+          //     bottom: 10.0,
+          //     right: 10.0,
+          //     left: 10.0,
+          //     child: Container(
+          //       height: 50.0,
+          //       width: double.infinity,
+          //       child: Row(
+          //         children: [
+          //           Expanded(
+          //             child: InkWell(
+          //               onTap: () {},
+          //               child: Container(
+          //                 height: 50,
+          //                 // margin: EdgeInsets.all(10),
+          //                 decoration: BoxDecoration(
+          //                   gradient: LinearGradient(
+          //                       begin: Alignment.topLeft,
+          //                       colors: [
+          //                         Color(Helper.getHexToInt("#11C7A1")),
+          //                         // Colors.green[600],
+          //                         Color(Helper.getHexToInt("#11E4A1"))
+          //                       ]),
+          //                   // color: Colors.white,
+          //                   borderRadius: BorderRadius.circular(9),
+          //                 ),
+          //                 child: Center(
+          //                     child: Text(
+          //                   "Set Location",
+          //                   style: TextStyle(
+          //                     fontSize: 16,
+          //                     color: Colors.white,
+          //                     fontFamily: 'TTCommonsm',
+          //                   ),
+          //                 )),
+          //               ),
+          //             ),
+          //           ),
+          //           SizedBox(
+          //             width: 5,
+          //           ),
+          //           InkWell(
+          //             onTap: () {},
+          //             child: Container(
+          //               alignment: Alignment.topLeft,
+          //               // padding: EdgeInsets.only(top: 5, left: 5),
+          //               width: 50,
+          //               height: 50,
+          //               decoration: BoxDecoration(
+          //                   gradient: LinearGradient(
+          //                       begin: Alignment.topLeft,
+          //                       colors: [
+          //                         Color(Helper.getHexToInt("#11C7A1")),
+          //                         // Colors.green[600],
+          //                         Color(Helper.getHexToInt("#11E4A1"))
+          //                       ]),
+          //                   borderRadius: BorderRadius.circular(9)),
+          //               child: Center(child: Icon(Icons.star)),
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     )),
         ],
       ),
     );

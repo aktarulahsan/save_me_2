@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:save_me_2/MyMapController.dart';
 import 'package:save_me_2/details_page.dart';
 
 class FirebaseMessagingDemo extends StatefulWidget {
@@ -15,11 +17,11 @@ class FirebaseMessagingDemo extends StatefulWidget {
 
 class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-
+  final mymapcont = Get.put(MyMapController());
   List<Message> _messages;
   Letlng letlng;
-  String lat;
-  String lng;
+  var lat;
+  var lng;
   _getToken() {
     _firebaseMessaging.getToken().then((deviceToken) {
       print("Device Token: $deviceToken");
@@ -29,9 +31,11 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   @override
   void initState() {
     super.initState();
+    // ignore: deprecated_member_use
     _messages = List<Message>();
     _getToken();
     _configureFirebaseListeners();
+
   }
 
   _configureFirebaseListeners() {
@@ -42,16 +46,32 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
 
         print('on message ${json.encode(message['data']['title'])}');
         print('onMessage: $message');
-        if (Platform.isAndroid) {
-          sender = message['notification']['title'];
-          parsedMessage = message['notification']['body'];
-          lat = message['data']['Lat'];
-          lng = message['data']['Lng'];
-          print('sender: $lat');
-          print('sender: $lng');
-          print('parsedMessage: $parsedMessage');
-          _setMessage(message);
-        }
+        // print('parsedMessage: $message');
+        sender = message['notification']['title'];
+        parsedMessage = message['notification']['body'];
+        // print('parsedMessage: $message');
+        lat = message['data']['Lat'];
+        // lat = double.parse(lat);
+        lng = message['data']['Lng'];
+        // lng = double.parse(lng);
+        mymapcont.pointLat.value = double.tryParse(lat);
+        mymapcont.pointLong.value= double.tryParse(lng);
+        print('lat: ${mymapcont.pointLat.value}');
+        print('lng: ${mymapcont.pointLong.value}');
+        print('parsedMessage: $parsedMessage');
+        // mymapcont.gotoMap();
+        _setMessage(message);
+        // _setMessage(message);
+        // if (Platform.isAndroid) {
+        //   sender = message['notification']['title'];
+        //   parsedMessage = message['notification']['body'];
+        //   lat = message['data']['Lat'];
+        //   lng = message['data']['Lng'];
+        //   print('sender: $lat');
+        //   print('sender: $lng');
+        //   print('parsedMessage: $parsedMessage');
+        //   _setMessage(message);
+        // }
       },
       onLaunch: (Map<String, dynamic> message) async {
         print('onLaunch: $message');
@@ -95,27 +115,31 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: ListView.builder(
-        itemCount: null == _messages ? 0 : _messages.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Text(
-                _messages[index].message,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Center(
+          child: Text('location'),
+        )
+
+        // ListView.builder(
+        //   itemCount: null == _messages ? 0 : _messages.length,
+        //   itemBuilder: (BuildContext context, int index) {
+        //     return Card(
+        //       child: Padding(
+        //         padding: EdgeInsets.all(15.0),
+        //         child: Text(
+        //           _messages[index].message,
+        //           style: TextStyle(
+        //             fontSize: 16.0,
+        //             color: Colors.black,
+        //           ),
+        //         ),
+        //       ),
+        //     );
+        //   },
+        // ),
+        );
   }
 }
 
