@@ -29,7 +29,6 @@ class _MyMapState extends State<MyMap> {
   double l;
   double d;
 
-
   void onCameraMove(CameraPosition position) async {
     setState(() {});
     buscando = false;
@@ -58,6 +57,7 @@ class _MyMapState extends State<MyMap> {
     void _onMapCreated(GoogleMapController controller) {
       mapController = controller;
     }
+
     // l = double.tryParse(widget.lat);
     // d = double.tryParse(widget.lng);
     // _center = const LatLng(45.521563, -122.677433);
@@ -66,10 +66,10 @@ class _MyMapState extends State<MyMap> {
       body: Stack(
         children: [
           GoogleMap(
-            initialCameraPosition: CameraPosition(target: _center, zoom: 11.7),
-            minMaxZoomPreference: MinMaxZoomPreference(11.5, 16.8),
+            initialCameraPosition: CameraPosition(target: _center, zoom: 15.7),
+            minMaxZoomPreference: MinMaxZoomPreference(11.5, 18.8),
             zoomControlsEnabled: true,
-            mapType: MapType.hybrid,
+            mapType: MapType.normal,
             myLocationEnabled: true,
             myLocationButtonEnabled: false,
             onCameraMove: onCameraMove,
