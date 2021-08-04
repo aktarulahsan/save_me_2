@@ -28,14 +28,16 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
       body: Container(
         child: Center(
-          child: InkWell(
-              // onTap: (){},
-              onTap: () {
-                mymapcont.gotoMap();
-              },
-              child: notificationCard(widget.lat, widget.lng, widget.titless)),
-          // child: Text("${widget.titless}, ${widget.lat}, ${widget.lng}")),
-        ),
+            child: notificationCard(widget.lat, widget.lng, widget.titless)),
+
+        //    InkWell(
+        //       // onTap: (){},
+        //       onTap: () {
+        //         mymapcont.gotoMap();
+        //       },
+        //       child: notificationCard(widget.lat, widget.lng, widget.titless)),
+        //   // child: Text("${widget.titless}, ${widget.lat}, ${widget.lng}")),
+        // ),
       ),
     );
   }
@@ -53,10 +55,11 @@ class _DetailsPageState extends State<DetailsPage> {
         onTap: () {
           print("object");
 
-          var a = t;
-          print(a);
-          var b = l;
-          var c = d;
+          // var a = t;
+          // print(a);
+          // var b = l;
+          // var c = d;
+          mymapcont.gotoMap();
           // controller.setAddress(a, b, c);
         },
         child: Stack(
