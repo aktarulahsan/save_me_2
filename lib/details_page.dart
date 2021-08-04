@@ -33,8 +33,8 @@ class _DetailsPageState extends State<DetailsPage> {
               onTap: () {
                 mymapcont.gotoMap();
               },
-              child:  notificationCard(widget.lat, widget.lng, widget.titless),
-              // child: Text("${widget.titless}, ${widget.lat}, ${widget.lng}")),
+              child: notificationCard(widget.lat, widget.lng, widget.titless)),
+          // child: Text("${widget.titless}, ${widget.lat}, ${widget.lng}")),
         ),
       ),
     );
@@ -71,15 +71,11 @@ class _DetailsPageState extends State<DetailsPage> {
                   backgroundColor: Color(Helper.getHexToInt("#CDFFEF")),
                   radius: 60.0,
                   child: Container(
-                    child: Icon(
-                            Icons.location_on,
-                            size: 18,
-                            color: Color(Helper.getHexToInt("#11C4A1")),
-                          )
-                        
-                             
-                               
-                  ),
+                      child: Icon(
+                    Icons.location_on,
+                    size: 18,
+                    color: Color(Helper.getHexToInt("#11C4A1")),
+                  )),
                 ),
               ),
             ),
@@ -103,7 +99,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 left: 65,
                 child: Center(
                   child: Text(
-                   l+", "+d,
+                    l + ", " + d,
                     style: TextStyle(
                         fontFamily: "TTCommonsd",
                         fontSize: 14,
