@@ -21,7 +21,7 @@ class LoginController extends GetxController {
   var isUpdate = false.obs;
   var ptoken = "".obs;
 
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   DatabaseReference _counterRef;
   FirebaseDatabase database;
@@ -66,7 +66,7 @@ class LoginController extends GetxController {
       "mobile": model.mobile,
       "token": ptoken.value,
     };
-    ref.child('user').child(model.mobile).set(data).then((v) {});
+    ref.child('user').child(model.email).set(data).then((v) {});
     // final databaseRef = FirebaseDatabase._instance_.reference(); //database reference object
     //
     // void addData(String data) {
@@ -132,6 +132,7 @@ class LoginController extends GetxController {
   }
 
   void createUser() async {
+    _firebaseAuth = FirebaseAuth.instance;
     UserModel model = new UserModel();
     // model.name = username.value.text;
     // model.mobile = usermobile.value.text;
