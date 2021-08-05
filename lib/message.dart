@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
+
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:save_me_2/Helper.dart';
 import 'package:save_me_2/MyMapController.dart';
-import 'package:save_me_2/details_page.dart';
+import 'package:save_me_2/auth/drawerPage.dart';
 
 class FirebaseMessagingDemo extends StatefulWidget {
   FirebaseMessagingDemo() : super();
@@ -19,8 +20,8 @@ class FirebaseMessagingDemo extends StatefulWidget {
 class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final mymapcont = Get.put(MyMapController());
-  List<Message> _messages;
-  Letlng letlng;
+  // List<Message> _messages;
+  // late Letlng letlng;
   var lat;
   var lng;
   var titles = "a";
@@ -34,7 +35,7 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   void initState() {
     super.initState();
     // ignore: deprecated_member_use
-    _messages = List<Message>();
+    // _messages = <Message>[].obs;
     _getToken();
     _configureFirebaseListeners();
   }
@@ -111,15 +112,16 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
       });
     }
 
-    setState(() {
-      Message m = Message(title, body, message);
-      _messages.add(m);
-    });
+    // setState(() {
+    //   Message m = Message(title, body, message);
+    //   _messages.add(m);
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: DrawerPage(),
         appBar: AppBar(
           title: Text(widget.title),
         ),
@@ -209,7 +211,7 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
                 left: 65,
                 child: Center(
                   child: Text(
-                   "latitude: "+ l + ", " +"Longitude: "+ d,
+                    "latitude: " + l + ", " + "Longitude: " + d,
                     style: TextStyle(
                         fontFamily: "TTCommonsd",
                         fontSize: 14,
@@ -223,22 +225,22 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   }
 }
 
-class Message {
-  String title;
-  String body;
-  String message;
-  Message(title, body, message) {
-    this.title = title;
-    this.body = body;
-    this.message = message;
-  }
-}
+// class Message {
+//   String title;
+//   String body;
+//   String message;
+//   Message(title, body, message) {
+//     this.title = title;
+//     this.body = body;
+//     this.message = message;
+//   }
+// }
 
-class Letlng {
-  String lat;
-  String lng;
-  Letlng(lat, lng) {
-    this.lat = lat;
-    this.lng = lng;
-  }
-}
+// class Letlng {
+//   String lat;
+//   String lng;
+//   Letlng(lat, lng) {
+//     this.lat = lat;
+//     this.lng = lng;
+//   }
+// }

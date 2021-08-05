@@ -7,10 +7,11 @@ import 'package:save_me_2/MyMapController.dart';
 import 'helper.dart';
 
 class MyMap extends StatefulWidget {
-  final String lat;
-  final String lng;
+  // final String lat;
+  // final String lng;
 
-  const MyMap({Key key, this.lat, this.lng}) : super(key: key);
+  // const MyMap({Key? key, required this.lat, required this.lng})
+  //     : super(key: key);
 
   @override
   _MyMapState createState() => _MyMapState();

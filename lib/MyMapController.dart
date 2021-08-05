@@ -7,7 +7,7 @@ class MyMapController extends GetxController {
   var pointLat = 0.0.obs;
   var pointLong = 0.0.obs;
   var pointAddress = "".obs;
-
+  var notTitle ="a".obs;
   @override
   void onInit() {
     getLocation();

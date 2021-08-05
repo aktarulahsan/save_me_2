@@ -8,7 +8,11 @@ class DetailsPage extends StatefulWidget {
   final String lat;
   final String lng;
 
-  const DetailsPage({Key key, this.titless, this.lat, this.lng})
+  const DetailsPage(
+      { Key key,
+       this.titless,
+       this.lat,
+       this.lng})
       : super(key: key);
 
   @override
