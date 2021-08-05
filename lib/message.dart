@@ -9,6 +9,8 @@ import 'package:save_me_2/Helper.dart';
 import 'package:save_me_2/MyMapController.dart';
 import 'package:save_me_2/auth/drawerPage.dart';
 
+import 'auth/loginController.dart';
+
 class FirebaseMessagingDemo extends StatefulWidget {
   FirebaseMessagingDemo() : super();
   final String title = 'Push Notification';
@@ -20,6 +22,7 @@ class FirebaseMessagingDemo extends StatefulWidget {
 class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final mymapcont = Get.put(MyMapController());
+  // final lgcont= Get.put(LoginController());
   // List<Message> _messages;
   // late Letlng letlng;
   var lat;

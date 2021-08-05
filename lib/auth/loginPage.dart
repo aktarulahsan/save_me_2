@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:save_me_2/auth/loginController.dart';
+import 'package:save_me_2/auth/signin.dart';
 
 import 'drawerPage.dart';
 
@@ -14,7 +15,8 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text("Crud Application"),
+        automaticallyImplyLeading: false,
+        title: Text("Registration"),
       ),
       body: Container(
         // color: Colors.red,
@@ -59,9 +61,10 @@ class LoginPage extends StatelessWidget {
               RaisedButton(
                 onPressed: () {
                   // Get.to(HomeTwo());
+                  Get.to(SignIn());
                   // Get.to(ShowUserPage());
                 },
-                child: Text("go HomePage"),
+                child: Text("SignIn"),
               ),
               SizedBox(
                 height: 20,

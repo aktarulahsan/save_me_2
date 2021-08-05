@@ -4,8 +4,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:save_me_2/auth/signin.dart';
 import 'package:save_me_2/auth/userModel.dart';
 import 'package:save_me_2/message.dart';
+
+import 'loginPage.dart';
 
 class LoginController extends GetxController {
   final username = TextEditingController().obs;
@@ -17,10 +20,11 @@ class LoginController extends GetxController {
   var userModel = UserModel().obs;
 
   final userList = List<UserModel>().obs;
-
+  var curentUser= "".obs;
+  var curentUsermail="".obs;
   var isUpdate = false.obs;
   var ptoken = "".obs;
-
+  var user;
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   DatabaseReference _counterRef;
@@ -31,9 +35,21 @@ class LoginController extends GetxController {
     getCurentUser();
     // getUserlist();
     gettoken();
+    checkUser();
     super.onInit();
   }
-
+  void checkUser(){
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User user = auth.currentUser;
+    // user = FirebaseAuth.instance.currentUser;
+    print(user.uid);
+    if(user.uid !=null){
+      curentUser.value= user.uid;
+      curentUsermail.value= user.email;
+      print(curentUsermail.value);
+        // Get.to(FirebaseMessagingDemo());
+    }
+  }
   void saveOrUpdate() {
     isUpdate.value == false ? saveUser() : userUpdate();
   }
@@ -78,7 +94,7 @@ class LoginController extends GetxController {
 
     // getUserlist();
     // createUser();
-    Get.to(FirebaseMessagingDemo());
+    Get.to(SignIn());
     print(userList);
     reset();
   }
@@ -142,7 +158,7 @@ class LoginController extends GetxController {
 
     try {
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: model.email, password: model.password);
+          email: model.email, password: model.password,);
       // if(user.){}
       if (user != null) {
         print('reg sucess $user');
@@ -181,6 +197,41 @@ class LoginController extends GetxController {
         allData.add(d);
       }
     });
+  }
+
+  void logout()async{
+    try{
+      await FirebaseAuth.instance.signOut();
+      Get.to(SignIn());
+    } catch(e){
+      print(e);
+    }
+
+  }
+  void login()async{
+    UserModel model = new UserModel();
+    model.email = emailid.value.text;
+    model.password = pass.value.text;
+    print(model.email);
+    print(model.password);
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: model.email,
+          password: model.password
+      );
+      print(userCredential);
+      print(userCredential.user.email);
+      if(userCredential !=null){
+        emailid.value.text = userCredential.user.email;
+        Get.to(FirebaseMessagingDemo());
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
   }
 
   // deleteTodo(String key, int index) {
