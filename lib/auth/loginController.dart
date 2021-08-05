@@ -42,8 +42,9 @@ class LoginController extends GetxController {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User user = auth.currentUser;
     // user = FirebaseAuth.instance.currentUser;
-    print(user.uid);
-    if(user.uid !=null){
+    print(user);
+    print("user");
+    if(user !=null){
       curentUser.value= user.uid;
       curentUsermail.value= user.email;
       print(curentUsermail.value);

@@ -48,9 +48,11 @@ class _SplashScreenState extends State<SplashScreen> {
       //     context, MaterialPageRoute(builder: (context) => LoginPage()));
 
 
+      final FirebaseAuth auth = FirebaseAuth.instance;
       final User user = auth.currentUser;
+      print("Device Token: ");
 
-      if (user.uid !=null) {
+      if (user !=null) {
         Get.offAll(FirebaseMessagingDemo());
       } else {
         Get.offAll(SignIn());
