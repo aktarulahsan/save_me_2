@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:save_me_2/auth/loginPage.dart';
 
 class ForgotPassword extends GetWidget<LoginController> {
-  TextEditingController email = TextEditingController();
+  TextEditingController emailc = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class ForgotPassword extends GetWidget<LoginController> {
               //   padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
               //
               //   child:
-              showText(controller.emailid.value, "Email"),
+              showText(emailc, "Email"),
               // TextField(
               //   controller: email,
               //   decoration: InputDecoration(
@@ -73,7 +73,7 @@ class ForgotPassword extends GetWidget<LoginController> {
                   height:  20.0),
               InkWell(
                 onTap: (){
-                  controller.sendpasswordresetemail(email.text);
+                  controller.sendpasswordresetemail(emailc.text);
                 },
                 child: Container(
                     height: dh * 5,
@@ -99,7 +99,7 @@ class ForgotPassword extends GetWidget<LoginController> {
               ),
               GestureDetector(
                   onTap: () {
-                    controller.sendpasswordresetemail(email.text);
+                    controller.sendpasswordresetemail(emailc.text);
                   },
                   child:Text("Reset Password",style:   TextStyle(
                       height: 40, fontSize: 20.0, color: Color(0XFFFF0772)))),
