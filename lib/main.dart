@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 
 import 'auth/LoginBinding.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -16,20 +15,19 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
         initialBinding: LoginBinding(),
-      home: SplashScreen()
-    );
+        
+
+        home: SplashScreen());
   }
 }
 
@@ -47,17 +45,15 @@ class _SplashScreenState extends State<SplashScreen> {
       // Navigator.push(
       //     context, MaterialPageRoute(builder: (context) => LoginPage()));
 
-
       final FirebaseAuth auth = FirebaseAuth.instance;
       final User user = auth.currentUser;
       print("Device Token: ");
 
-      if (user !=null) {
+      if (user != null) {
         Get.offAll(FirebaseMessagingDemo());
       } else {
         Get.offAll(SignIn());
       }
-
 
       // checkloginstutas();
     });
@@ -96,21 +92,23 @@ class _SplashScreenState extends State<SplashScreen> {
               Expanded(
                 flex: 2,
                 child: Container(
-                  alignment: Alignment.center,
-                  height: 100.0,
-                  width: 300.0,
-                  child: Center(
-                    child: Text(
-                      "Help"
+                    alignment: Alignment.center,
+                    height: 100.0,
+                    width: 300.0,
+                    child: Center(
+                      //   child: Text(
+                      //     "Help"
+                      //   ),
+                      // ),
+                      child: Image.asset('assets/logo.png'),
+                    )
+                    // child: Image.asset(
+                    //   "assets/images/Enruta-Logo.png",
+                    //   height: 100,
+                    //   width: 150,
+                    //   // fit: BoxFit.cover,
+                    // ),
                     ),
-                  ),
-                  // child: Image.asset(
-                  //   "assets/images/Enruta-Logo.png",
-                  //   height: 100,
-                  //   width: 150,
-                  //   // fit: BoxFit.cover,
-                  // ),
-                ),
               )
             ],
           )

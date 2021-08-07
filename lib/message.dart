@@ -28,6 +28,7 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   var lat;
   var lng;
   var titles = "a";
+
   _getToken() {
     _firebaseMessaging.getToken().then((deviceToken) {
       print("Device Token: $deviceToken");
@@ -67,17 +68,7 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
         print('parsedMessage: $parsedMessage');
         // mymapcont.gotoMap();
         _setMessage(message);
-        // _setMessage(message);
-        // if (Platform.isAndroid) {
-        //   sender = message['notification']['title'];
-        //   parsedMessage = message['notification']['body'];
-        //   lat = message['data']['Lat'];
-        //   lng = message['data']['Lng'];
-        //   print('sender: $lat');
-        //   print('sender: $lng');
-        //   print('parsedMessage: $parsedMessage');
-        //   _setMessage(message);
-        // }
+
       },
       onLaunch: (Map<String, dynamic> message) async {
         print('onLaunch: $message');
@@ -131,7 +122,7 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
         body: Center(
           child: this.titles != "a"
               ? notificationCard(this.lat, this.lng, this.titles)
-              : Text('location'),
+              : Text(titles),
         )
 
         // ListView.builder(

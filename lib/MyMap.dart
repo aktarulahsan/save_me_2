@@ -29,7 +29,7 @@ class _MyMapState extends State<MyMap> {
   bool buscando = false;
   double l;
   double d;
-
+  List<Marker> myMarker=[];
   void onCameraMove(CameraPosition position) async {
     setState(() {});
     buscando = false;
@@ -48,9 +48,16 @@ class _MyMapState extends State<MyMap> {
   @override
   void initState() {
     _center = LatLng(mapcontroll.pointLat.value, mapcontroll.pointLong.value);
+    myMarker=[];
+    myMarker.add(
+        Marker(markerId: MarkerId("help"),
+          position: _center,
+        )
+    );
 
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +82,7 @@ class _MyMapState extends State<MyMap> {
             myLocationButtonEnabled: false,
             onCameraMove: onCameraMove,
             onMapCreated: onCreated,
+            markers: Set.from(myMarker),
             onCameraIdle: () async {
               buscando = true;
               setState(() {});
@@ -103,6 +111,16 @@ class _MyMapState extends State<MyMap> {
     );
   }
 
+  handleTap(LatLng tappedPoint){
+    setState(() {
+      myMarker=[];
+      myMarker.add(
+        Marker(markerId: MarkerId(tappedPoint.toString()),
+        position: _center,
+        )
+      );
+    });
+  }
   Widget showbottom() {
     return Container(
       // width: 200,

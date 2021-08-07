@@ -45,7 +45,7 @@ class LoginController extends GetxController {
     print(user);
     print("user");
     if(user !=null){
-      curentUser.value= user.uid;
+      curentUser.value= user.uid; 
       curentUsermail.value= user.email;
       print(curentUsermail.value);
         // Get.to(FirebaseMessagingDemo());
@@ -65,6 +65,14 @@ class LoginController extends GetxController {
       print("Device Token: $deviceToken");
       ptoken.value = deviceToken;
     });
+  }
+
+  void sendpasswordresetemail(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email).then((value) {
+      Get.offAll(SignIn());
+      Get.snackbar("Password Reset email link is sent", "Successful!");
+    }).catchError((onError) =>
+        Get.snackbar("Error while trying to reset", onError.message));
   }
 
   void saveUser() async {
@@ -211,10 +219,22 @@ class LoginController extends GetxController {
   }
   void login()async{
     UserModel model = new UserModel();
+    if(model.email ==""){
+      Get.snackbar("warning", "please file the email field");
+      return;
+    }
+    if(pass.value.text ==""){
+      Get.snackbar("warning", "please file the password field");
+
+      return;
+    }
     model.email = emailid.value.text;
     model.password = pass.value.text;
     print(model.email);
     print(model.password);
+    print(model.password);
+
+
     try {
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: model.email,
@@ -229,7 +249,9 @@ class LoginController extends GetxController {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
+        Get.snackbar("warning", "No user found for that email.");
       } else if (e.code == 'wrong-password') {
+        Get.snackbar("warning", "Wrong password provided for that user.");
         print('Wrong password provided for that user.');
       }
     }
