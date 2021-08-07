@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialBinding: LoginBinding(),
-        
+
 
         home: SplashScreen());
   }
@@ -50,7 +50,9 @@ class _SplashScreenState extends State<SplashScreen> {
       print("Device Token: ");
 
       if (user != null) {
-        Get.offAll(FirebaseMessagingDemo());
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => FirebaseMessagingDemo()));
+        // Get.offAll(FirebaseMessagingDemo());
       } else {
         Get.offAll(SignIn());
       }

@@ -148,7 +148,7 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   Widget notificationCard(var l, var d, var t) {
     return Container(
       height: 66,
-      width: MediaQuery.of(context).size.width,
+      width: Get.width,
       margin: EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
       decoration: BoxDecoration(
         color: Colors.white,

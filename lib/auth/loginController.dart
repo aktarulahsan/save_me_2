@@ -92,17 +92,7 @@ class LoginController extends GetxController {
       "token": ptoken.value,
     };
     ref.child('user').child(model.email).set(data).then((v) {});
-    // final databaseRef = FirebaseDatabase._instance_.reference(); //database reference object
-    //
-    // void addData(String data) {
-    //   databaseRef.push().set({'name': data, 'comment': 'A good season'});
-    // }
-    // database = FirebaseDatabase.getInstance();
-    // DatabaseReference refs=FirebaseDatabase.instance.reference();
-    // refs = database.getReference().child("users").child(model.mobile);
 
-    // getUserlist();
-    // createUser();
     Get.to(SignIn());
     print(userList);
     reset();
@@ -242,10 +232,12 @@ class LoginController extends GetxController {
       );
       print(userCredential);
       print(userCredential.user.email);
+
       if(userCredential !=null){
         emailid.value.text = userCredential.user.email;
-        Get.to(FirebaseMessagingDemo());
+
       }
+      Get.to(FirebaseMessagingDemo());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -255,17 +247,9 @@ class LoginController extends GetxController {
         print('Wrong password provided for that user.');
       }
     }
+
   }
 
-  // deleteTodo(String key, int index) {
-  //   final FirebaseDatabase _database = FirebaseDatabase.instance;
-  //   // DatabaseReference ref = FirebaseDatabase.instance.reference();
-  //   _database.reference().child("user").child(key).remove().then((_) {
-  //     print("Delete $todoId successful");
-  //     setState(() {
-  //       _todoList.removeAt(index);
-  //     });
-  //   });
-  // }
+
 
 }
