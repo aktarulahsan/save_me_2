@@ -13,7 +13,7 @@ import 'auth/loginController.dart';
 
 class FirebaseMessagingDemo extends StatefulWidget {
   FirebaseMessagingDemo() : super();
-  final String title = 'Push Notification';
+  final String title = 'Help Notification';
 
   @override
   State<StatefulWidget> createState() => _FirebaseMessagingDemoState();
