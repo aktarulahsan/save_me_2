@@ -22,9 +22,7 @@ class FirebaseMessagingDemo extends StatefulWidget {
 class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final mymapcont = Get.put(MyMapController());
-  // final lgcont= Get.put(LoginController());
-  // List<Message> _messages;
-  // late Letlng letlng;
+
   var lat;
   var lng;
   var titles = "a";
@@ -38,8 +36,7 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
   @override
   void initState() {
     super.initState();
-    // ignore: deprecated_member_use
-    // _messages = <Message>[].obs;
+
     _getToken();
     _configureFirebaseListeners();
   }
@@ -56,17 +53,17 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
         sender = message['notification']['title'];
         titles = message['notification']['title'];
         parsedMessage = message['notification']['body'];
-        // print('parsedMessage: $message');
+
         lat = message['data']['Lat'];
-        // lat = double.parse(lat);
+
         lng = message['data']['Lng'];
-        // lng = double.parse(lng);
+
         mymapcont.pointLat.value = double.tryParse(lat);
         mymapcont.pointLong.value = double.tryParse(lng);
         print('lat: ${mymapcont.pointLat.value}');
         print('lng: ${mymapcont.pointLong.value}');
         print('parsedMessage: $parsedMessage');
-        // mymapcont.gotoMap();
+
         _setMessage(message);
 
       },
@@ -122,7 +119,7 @@ class _FirebaseMessagingDemoState extends State<FirebaseMessagingDemo> {
         body: Center(
           child: this.titles != "a"
               ? notificationCard(this.lat, this.lng, this.titles)
-              : Text(titles),
+              : Text("No help needed"),
         )
 
         // ListView.builder(

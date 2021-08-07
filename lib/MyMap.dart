@@ -71,6 +71,9 @@ class _MyMapState extends State<MyMap> {
     // _center = const LatLng(45.521563, -122.677433);
     // String s= widget.lat;
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Help Location'),
+      ),
       body: Stack(
         children: [
           GoogleMap(

@@ -86,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
         fit: StackFit.expand,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(color: Colors.white),
+            decoration: BoxDecoration(color: Colors.lightBlueAccent),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -102,7 +102,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       //     "Help"
                       //   ),
                       // ),
-                      child: Image.asset('assets/logo.png'),
+                      child: Image.asset('assets/logo2.png'),
                     )
                     // child: Image.asset(
                     //   "assets/images/Enruta-Logo.png",
